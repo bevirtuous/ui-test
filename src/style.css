@@ -1,0 +1,57 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  font-family: Muli, sans-serif;
+  margin: 40px;
+}
+
+.button {
+  align-items: center;
+  background: #2B6CB0;
+  border-radius: 7px;
+  border: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  color: #FFF;
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  letter-spacing: .025em;
+  padding: 0 14px;
+  position: relative;
+}
+
+.button--disabled {
+  background: #718096;
+  color: #C6CCD5;
+}
+
+.button:active {
+  top: 2px;
+}
+
+.button:focus {
+  outline: 2px solid #E6D444;
+  outline-offset: 4px;
+}
+
+.button__icon {
+  margin-left: .5em;
+  pointer-events: none;
+  width: 1em;
+}
+
+.button__icon--busy {
+  animation: spin 1s infinite linear;
+}
+
+.button__icon--success {
+  fill: currentColor;
+}

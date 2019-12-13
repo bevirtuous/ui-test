@@ -2,9 +2,10 @@ import React, { forwardRef, useRef, useState } from 'react';
 import { ButtonContext } from './context';
 
 const CoreButton = (Component) => forwardRef((props, outerRef) => {
+  const [busy, setBusy] = useState(false);
   const [disabled, setDisabled] = useState(props.disabled);
   const [focused, setFocused] = useState(false);
-  const [touched, setTouched] = useState(false);
+  const [touched, setTouched] = useState(0);
   const innerRef = useRef();
   const ref = outerRef || innerRef;
 
@@ -19,10 +20,16 @@ const CoreButton = (Component) => forwardRef((props, outerRef) => {
   function handleClick(event) {
     event.persist();
 
-    setTouched(true);
+    setTouched(touched + 1);
 
     if (props.onClick) {
-      props.onClick(event, { ref, setDisabled: handleDisableChange });
+      props.onClick(event, {
+        busy,
+        ref,
+        setBusy,
+        setDisabled: handleDisableChange,
+        touched,
+      });
     }
   }
 
@@ -47,7 +54,7 @@ const CoreButton = (Component) => forwardRef((props, outerRef) => {
   }
 
   return (
-    <ButtonContext.Provider value={{ disabled, focused, ref, touched }}>
+    <ButtonContext.Provider value={{ busy, disabled, focused, ref, touched }}>
       <Component
         {...props}
         onClick={handleClick}
