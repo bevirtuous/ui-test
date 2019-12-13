@@ -3,7 +3,7 @@ import React from 'react';
 import MyButton from './MyButton';
 
 function App() {
-  function handleClick({ setDisabled }) {
+  function handleClick(_, { setDisabled }) {
     setDisabled(true);
 
     setTimeout(() => {

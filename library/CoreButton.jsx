@@ -22,7 +22,7 @@ const CoreButton = (Component) => forwardRef((props, outerRef) => {
     setTouched(true);
 
     if (props.onClick) {
-      props.onClick({ event, ref, setDisabled: handleDisableChange });
+      props.onClick(event, { ref, setDisabled: handleDisableChange });
     }
   }
 
@@ -32,7 +32,7 @@ const CoreButton = (Component) => forwardRef((props, outerRef) => {
     setFocused(true);
 
     if (props.onFocus) {
-      props.onFocus({ event, ref });
+      props.onFocus(event, { ref });
     }
   }
 
@@ -42,7 +42,7 @@ const CoreButton = (Component) => forwardRef((props, outerRef) => {
     setFocused(false);
 
     if (props.onBlur) {
-      props.onBlur({ event, ref });
+      props.onBlur(event, { ref });
     }
   }
 
